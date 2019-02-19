@@ -8,24 +8,32 @@
     <div class="code">
       <el-input class="codeNum"
                 placeholder="请输入密码"
+                :type="isShowCode?'password':'string'"
                 v-model="code">
       </el-input>
+      <el-switch class="show-code"
+        v-model="isShowCode"
+        active-color="#dcdfe6"
+        inactive-color="#409EFF">
+      </el-switch>
       <!--<el-button class="getCode">获取验证码</el-button>-->
     </div>
     <el-button type="primary"
                :plain="true" class="login"
-               @click="allowLogin">登录</el-button>
+               @click="allowLogin" >登录</el-button>
   </div>
 </template>
 
 <script>
-  import {mapState} from 'vuex'
+  import {mapState} from 'vuex';
+
   export default {
     data(){
       return {
         name:'',
         code:'',
-        message:''
+        message:'',
+        isShowCode:true
       }
     },
     mounted(){
@@ -50,9 +58,25 @@
             type: 'warning'
           });
           return;
+        }else if(name.trim() !== 'admin'){
+          message='用户名错误';
+          this.$message({
+            message: message,
+            duration:1000,
+            type: 'warning'
+          });
+          return;
+        }else if(code.trim() !== 'admin'){
+          message='密码错误';
+          this.$message({
+            message: message,
+            duration:1000,
+            type: 'warning'
+          });
+          return;
         };
         this.$store.dispatch('saveUser',name);//保存用户信息
-        this.$router.replace('/home')
+        this.$router.push('/home')
       }
     },
     computed:{
@@ -83,6 +107,11 @@
     position: relative;
     .codeNum{
       width: 100%;
+    }
+    .show-code{
+      position: absolute;
+      top: 11px;
+      right: 0px;
     }
     .getCode{
       position: absolute;

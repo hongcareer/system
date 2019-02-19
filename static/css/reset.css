@@ -24,6 +24,7 @@ time, mark, audio, video, input {
 }
 .el-card__body{
   padding: 0 !important;
+  background-color: rgba(255,255,255,0);
 }
 /*.el-input{*/
   /*outline: none;*/
@@ -60,6 +61,7 @@ a {
   color: #7e8c8d;
   text-decoration: none;
   -webkit-backface-visibility: hidden;
+  cursor: pointer;
 }
 
 li {

@@ -1,12 +1,12 @@
 <template>
     <div class="home">
       <el-container direction="vertical">
-        <HomeHeader :nowWidth="nowWidth"/>
-        <el-main>
+        <HomeHeader :nowWidth="nowWidth" :nowHeight="nowHeight"/>
+        <el-main :style="{'height':mainHeight+'px'}">
           <el-row :gutter="12">
             <el-col >
               <el-card shadow="never" class="home-top" :class="{active:nowWidth<1069}" >
-                <el-row :gutter="12">
+                <el-row :gutter="16" :class="{active:nowWidth<1069}">
                   <el-col :span="nowWidth<1069?24:8">
                     <el-card shadow="hover" class="base-data all" :class="{active:nowWidth<1069}" @click.native="$router.push('/database')">
                       <span>基础数据</span>
@@ -35,8 +35,8 @@
               </el-card>
             </el-col>
             <el-col >
-              <el-card shadow="never" class="home-bottom" >
-                <el-row :gutter="12">
+              <el-card shadow="never" class="home-bottom" :class="{active:nowWidth<1069}">
+                <el-row :gutter="16" :class="{active:nowWidth<1069}">
                   <el-col :span="nowWidth<1069?24:4">
                     <el-card shadow="hover" class="analyse all" :class="{active:nowWidth<1069}">
                       <span>自定义分析</span>
@@ -76,7 +76,8 @@
     export default {
       data(){
         return {
-          nowWidth:document.body.clientWidth
+          nowWidth:document.body.clientWidth,
+          nowHeight:document.body.clientHeight,
         }
       },
       components:{
@@ -85,20 +86,36 @@
       mounted(){
         window.onresize = () => {
           this.nowWidth = document.documentElement.clientWidth;
-          console.log(this.nowWidth);
+          this.nowHeight = document.documentElement.clientHeight;
         }
       },
       methods:{
 
       },
-      watch:{
-        nowWidth(val){
-          if(!this.timer){
+      computed:{
+        mainHeight(){
+          let {nowHeight} = this;
+          return  nowHeight*0.8
+        }
+      },
+      watch: {
+        //监视页面的onresize事件
+        nowHeight(val) {
+          if (!this.timer) {
+            this.nowHeight = val;
+            this.timer = true;
+            setTimeout(() => {
+              this.timer = false;
+            }, 1000)
+          }
+        },
+        nowWidth(val) {
+          if (!this.timer) {
             this.nowWidth = val;
             this.timer = true;
             setTimeout(() => {
               this.timer = false;
-            },1000)
+            }, 1000)
           }
         }
       }
@@ -106,93 +123,132 @@
 </script>
 
 <style lang="less" scoped>
-  .el-col{
-    padding: 0px;
-  }
-  .el-main {
-    background-color: blueviolet;
-    color: #333;
-    text-align: center;
-    height: 500px;
-    padding: 6px;
-    overflow-x: hidden;
-    .home-top{
-      background-color: cornflowerblue;
-      margin-bottom: 10px;
-      &.active{
-        margin-bottom: 0px;
-      }
-      .all{
-        /*margin: -20px;*/
-        &:hover{
-          box-shadow: 0px 0px 29px -5px grey;
-        }
-        &.active{
-          height: 150px;
-          margin-bottom: 10px;
-          margin-top: 0;
+  .home{
+    background-color: cornflowerblue;
+    padding-bottom: 0px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    .el-container{
+      height: 100%;
+      .el-row{
+        background-color: rgba(255,255,255,0);
+        .el-col{
+          padding: 0px;
+          background-color: rgba(255,255,255,0);
         }
       }
-      .base-data{
-        height: 278px;
+      .el-main {
+        /*background-color: blueviolet;*/
+        color: #333;
+        text-align: center;
+        height: 80%;
+        padding: 6px;
+        overflow-x: hidden;
+        .home-top{
+          height: 320px;
+          background-color: transparent;
+          margin-bottom: -22px;
+          border: none;
+          &.active{
+            height: auto;
+            margin-bottom: 0px;
+          }
+          .el-row{
+            margin-top: 20px;
+            &.active{
+              margin-top: 0px;
+            }
+          }
+          .all{
+            &:hover{
+              box-shadow: 0px 0px 36px 3px blue;
+              transform: scale(1.01);
+              transition: all 1s;
+            }
+            &.active{
+              height: 150px;
+              margin-bottom: 10px;
+              margin-top: 0;
+            }
+          }
+          .base-data{
+            height: 278px;
+          }
+          .data-watch{
+            height: 133px;
+            margin-bottom:10px;
+          }
+          .targ-eva{
+            height: 133px;
+          }
+          .production{
+            height: 278px;
+          }
+          .timer{
+            height: 69px;
+            margin-bottom:10px;
+          }
+          .manage{
+            height: 197px;
+            margin-bottom: -10px;
+          }
+        }
+        .home-bottom{
+          background-color: transparent;
+          border: none;
+          height: 220px;
+          &.active{
+            height: auto;
+          }
+          .el-row{
+            margin-top: 20px;
+            &.active{
+              margin-top: 0px;
+            }
+          }
+          .all{
+            &:hover{
+              box-shadow:  0px 0px 36px 3px blue;
+              transform: scale(1.01);
+              transition: all 1s;
+            }
+            &.active{
+              height: 150px;
+              margin-bottom: 10px;
+              /*margin-top: 0;*/
+            }
+          }
+          .analyse{
+            height: 150px;
+          }
+          .chart-all{
+            height: 150px;
+          }
+          .school{
+            height: 150px;
+          }
+          .student{
+            height: 150px;
+          }
+          .teacher{
+            height: 150px;
+          }
+        }
       }
-      .data-watch{
-        height: 133px;
-        margin-bottom:10px;
+      .el-card {
+        border-radius: 0;
+        /*border: 0;*/
+        .el-card__body{
+          padding: 0 !important;
+        }
       }
-      .targ-eva{
-        height: 133px;
-      }
-      .production{
-        height: 278px;
-      }
-      .timer{
-        height: 69px;
-        margin-bottom:10px;
-      }
-      .manage{
-        height: 197px;
-        margin-bottom: -10px;
+      .el-scrollbar__wrap{overflow:hidden;}
+      .el-scrollbar__bar{
+        overflow: hidden;
       }
     }
-    .home-bottom{
-      background-color: cornflowerblue;
-      .all{
-        &:hover{
-          box-shadow: 0px 0px 29px -5px grey;
-        }
-        &.active{
-          height: 150px;
-          margin-bottom: 10px;
-          /*margin-top: 0;*/
-        }
-      }
-      .analyse{
-        height: 150px;
-      }
-      .chart-all{
-        height: 150px;
-      }
-      .school{
-        height: 150px;
-      }
-      .student{
-        height: 150px;
-      }
-      .teacher{
-        height: 150px;
-      }
-    }
   }
-  .el-card {
-    border-radius: 0;
-    /*border: 0;*/
-    .el-card__body{
-      padding: 0 !important;
-    }
-  }
-  .el-scrollbar__wrap{overflow:hidden;}
-  .el-scrollbar__bar{
-    overflow: hidden;
-  }
+
+
 </style>

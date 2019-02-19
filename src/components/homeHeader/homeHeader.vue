@@ -1,19 +1,19 @@
 <template>
-    <el-header>
+    <el-header :style="{'height':headerHeight+'px'}">
       <el-card>
         <h1 class="header-left">教育数据综合分析系统</h1>
         <div class="header-right-one" v-if="nowWidth>1069">
-          <div>
+          <div class="search" @click="$router.replace('/search')">
             <i class="el-icon-search"></i>
-            <span>搜索</span>
+            <a>搜索</a>
           </div>
-          <div>
+          <div class="home" @click="$router.replace('/home')">
             <i class="iconfont icon-shouye"></i>
-            <span>首页</span>
+            <a>首页</a>
           </div>
-          <div class="login" @click="$router.replace('/login')">
+          <div class="login" @click="$router.replace('/login')" v-if="!userName">
             <i class="iconfont icon-denglu"></i>
-            <span>登录</span>
+            <a>登录</a>
           </div>
         </div>
         <div class="header-right-two" v-else>
@@ -21,17 +21,17 @@
             <i class="iconfont icon-xuanxiang"></i>
           </div>
           <div class="choose-option" v-else>
-            <div>
+            <div class="search" @click="$router.replace('/search')">
               <i class="el-icon-search"></i>
-              <span>搜索</span>
+              <a>搜索</a>
             </div>
-            <div>
+            <div class="home" @click="$router.replace('/home')">
               <i class="iconfont icon-shouye"></i>
-              <span>首页</span>
+              <a>首页</a>
             </div>
-            <div @click="$router.replace('/login')">
+            <div class="login" @click="$router.replace('/login')" v-if="!userName">
               <i class="iconfont icon-denglu"></i>
-              <span>登录</span>
+              <a>登录</a>
             </div>
           </div>
         </div>
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+    import {mapState} from 'vuex'
     export default {
       name: "homeHeader",
       data(){
@@ -50,10 +51,11 @@
       mounted(){
         if(this.nowWidth>=1069){
           this.isShow = false
-        }
+        };
       },
       props:{
-        nowWidth:Number
+        nowWidth:Number,
+        nowHeight:Number
       },
       watch:{
         nowWidth(val){
@@ -61,6 +63,16 @@
             this.isShow = false
           }
         }
+      },
+      computed:{
+        ...mapState({
+          userName:state => state.login.username
+        }),
+
+        headerHeight(){
+          let {nowHeight} = this;
+          return  nowHeight*0.2
+        },
       }
     }
 </script>
@@ -73,7 +85,7 @@
   }
   .el-header{
     background-color: cornflowerblue;
-    height: 150px!important;
+    height: 150px;
     box-sizing: border-box;
     padding: 6px;
   }
@@ -84,19 +96,14 @@
     float: right;
     display: flex;
     div{
-      margin-right: 5px;
+      margin-right: 10px;
     }
   }
   .header-right-two{
     float: right;
+    div{
+      margin-bottom: 10px;
+    }
   }
 </style>
 
-<!--var url = window.location.href;-->
-<!--var typeNumber = url.substr(url.length-1,1);//1：视导员 0：专家-->
-<!--if(typeNumber == 0){-->
-<!--$("#zjdp").css('display','block')-->
-<!--$("#zjdp").html("<option>"+decodeURI(xxname)+"</option>")-->
-<!--}else if(typeNumber == 1){-->
-<!--$("#xxmc").html("<font size=3 style='color:white;'>"+decodeURI(xxname)+"</font>");-->
-<!--}-->
