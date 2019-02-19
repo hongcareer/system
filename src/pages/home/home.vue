@@ -2,7 +2,7 @@
     <div class="home">
       <el-container direction="vertical">
         <HomeHeader :nowWidth="nowWidth" :nowHeight="nowHeight"/>
-        <el-main :style="{'height':mainHeight+'px'}">
+        <el-main :style="nowWidth>=1069?{'height':mainHeight+'px'}:{'height':'auto'}">
           <el-row :gutter="12">
             <el-col >
               <el-card shadow="never" class="home-top" :class="{active:nowWidth<1069}" >
@@ -153,6 +153,7 @@
           &.active{
             height: auto;
             margin-bottom: 0px;
+            margin-top: 10px;
           }
           .el-row{
             margin-top: 20px;
