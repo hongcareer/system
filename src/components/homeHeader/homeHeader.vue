@@ -1,5 +1,5 @@
 <template>
-    <el-header :style="{'height':headerHeight+'px'}">
+    <el-header :style="{'height':headerHeight+'px'}" :class="{active:nowWidth<=1069}">
       <el-card>
         <h1 class="header-left">教育数据综合分析系统</h1>
         <div class="header-right-one" v-if="nowWidth>1069">
@@ -71,38 +71,64 @@
 
         headerHeight(){
           let {nowHeight} = this;
-          return  nowHeight*0.2
+          return  nowHeight*0.3
         },
       }
     }
 </script>
 
 <style lang="less" scoped>
-  .el-card{
-    border-radius: 0;
-    height: 100%;
-    /*background-color: cornflowerblue;*/
-  }
   .el-header{
-    background-color: cornflowerblue;
-    height: 150px;
-    box-sizing: border-box;
-    padding: 6px;
-  }
-  .header-left{
-    float: left;
-  }
-  .header-right-one{
-    float: right;
-    display: flex;
-    div{
-      margin-right: 10px;
+    padding: 144px;
+    padding-bottom:0;
+    padding-top:50px;
+    &.active{
+      padding: 0px;
     }
-  }
-  .header-right-two{
-    float: right;
-    div{
-      margin-bottom: 10px;
+    .el-card{
+      border-radius: 0;
+      height: 100%;
+      background-color: #3A86F9;
+      position: relative;
+      .header-left{
+        float: left;
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        transform: translateY(-50%);
+        color: #ffe;
+        font-weight: 700;
+        font-size: 60px;
+      }
+      .header-right-one{
+        float: right;
+        display: flex;
+        div{
+          margin-right: 10px;
+          color: #ffe;
+          font-size: 30px;
+          .iconfont{
+            font-size: 30px;
+          }
+          a{
+            color: #ffe;
+          }
+        }
+      }
+      .header-right-two{
+        float: right;
+        div{
+          margin-bottom: 10px;
+          color: #ffe;
+          font-size: 30px;
+          .iconfont{
+            font-size: 30px;
+          }
+          a{
+            color: #ffe;
+          }
+        }
+      }
     }
   }
 </style>
