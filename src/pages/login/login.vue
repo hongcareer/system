@@ -1,25 +1,25 @@
 <template>
   <div>
-    <el-input class="phone"
+    <input class="phone"
       placeholder="请输入用户名"
       v-model="name">
-    </el-input>
+    </input>
     <br>
     <div class="code">
-      <el-input class="codeNum"
+      <input class="codeNum"
                 placeholder="请输入密码"
                 :type="isShowCode?'password':'string'"
                 v-model="code">
-      </el-input>
+      </input>
       <el-switch class="show-code"
-        v-model="isShowCode"
-        active-color="#dcdfe6"
-        inactive-color="#409EFF">
+                    v-model="isShowCode"
+                    active-color="#dcdfe6"
+                    inactive-color="#409EFF">
       </el-switch>
       <!--<el-button class="getCode">获取验证码</el-button>-->
     </div>
     <el-button type="primary"
-               :plain="true" class="login"
+               :plain="true" class="login-login"
                @click="allowLogin" >登录</el-button>
   </div>
 </template>
@@ -96,27 +96,12 @@
 </script>
 
 <style lang="less" scoped>
-  .edit{
-    font-size: 40px;
-    color: red;
-  }
   .phone{
     width: 100%;
   }
   .code{
-    position: relative;
     .codeNum{
       width: 100%;
-    }
-    .show-code{
-      position: absolute;
-      top: 11px;
-      right: 0px;
-    }
-    .getCode{
-      position: absolute;
-      top: 0px;
-      right: 0px;
     }
   }
   .login{

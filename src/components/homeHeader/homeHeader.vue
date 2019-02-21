@@ -1,7 +1,7 @@
 <template>
     <el-header :style="{'height':headerHeight+'px'}" :class="{active:nowWidth<=1069}">
       <el-card>
-        <h1 class="header-left">教育数据综合分析系统</h1>
+        <h1 class="header-left" :class="{active:nowWidth<=1069}">教育数据综合分析系统</h1>
         <div class="header-right-one" v-if="nowWidth>1069">
           <div class="search" @click="$router.replace('/search')">
             <i class="el-icon-search"></i>
@@ -16,13 +16,13 @@
             <a>登录</a>
           </div>
         </div>
-        <div class="header-right-two" v-else>
+        <div class="header-right-two" v-else :class="{active:nowWidth<=1069}">
           <div class="choose" @click="isShow = !isShow" v-if="!isShow">
             <i class="iconfont icon-xuanxiang"></i>
           </div>
           <div class="choose-option" v-else>
             <div class="search" @click="$router.replace('/search')">
-              <i class="el-icon-search"></i>
+              <i class="iconfont el-icon-search"></i>
               <a>搜索</a>
             </div>
             <div class="home" @click="$router.replace('/home')">
@@ -71,7 +71,7 @@
 
         headerHeight(){
           let {nowHeight} = this;
-          return  nowHeight*0.3
+          return  nowHeight*0.2
         },
       }
     }
@@ -79,11 +79,11 @@
 
 <style lang="less" scoped>
   .el-header{
-    padding: 144px;
-    padding-bottom:0;
-    padding-top:50px;
+    padding: 0 144px;
+    margin-top: 35px;
     &.active{
       padding: 0px;
+      margin-top: 15px;
     }
     .el-card{
       border-radius: 0;
@@ -99,6 +99,9 @@
         color: #ffe;
         font-weight: 700;
         font-size: 60px;
+        &.active{
+          font-size: 120px;
+        }
       }
       .header-right-one{
         float: right;
@@ -106,9 +109,9 @@
         div{
           margin-right: 10px;
           color: #ffe;
-          font-size: 30px;
+          font-size: 25px;
           .iconfont{
-            font-size: 30px;
+            font-size: 25px;
           }
           a{
             color: #ffe;
@@ -117,16 +120,29 @@
       }
       .header-right-two{
         float: right;
+        .choose{
+          .icon-xuanxiang{
+            font-size: 120px;
+          }
+        }
         div{
           margin-bottom: 10px;
           color: #ffe;
-          font-size: 30px;
-          .iconfont{
-            font-size: 30px;
-          }
+          font-size: 60px;
           a{
             color: #ffe;
           }
+          &.choose-option{
+            .iconfont{
+              font-size: 60px;
+            }
+          }
+        }
+        &.active{
+          position: absolute;
+          top: 50%;
+          right: 20px;
+          transform: translateY(-50%);
         }
       }
     }
