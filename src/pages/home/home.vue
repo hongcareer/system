@@ -404,7 +404,6 @@
                 }
                 .iconfont{
                   font-size: 500px;
-                  color: white;
                   margin: 0;
                 }
               }
@@ -455,7 +454,7 @@
           }
           .timer{
             height: 111px;
-            margin-bottom:16.13px;
+            margin-bottom:22px;
             background: transparent;
             color: #fff;
             .timer-center{
@@ -494,7 +493,6 @@
             justify-content: center;
             align-items: center;
             height: 233px;
-            margin-bottom: -10px;
             background: #77DDC9;
             .manage-center{
               display: flex;
@@ -502,7 +500,7 @@
               justify-content: center;
               align-items: center;
               .icon-shezhi{
-                margin-bottom: 25px;
+                margin-top: 25px;
                 font-size: 80px;
               }
             }

@@ -8,15 +8,14 @@
     <div class="code">
       <input class="codeNum"
                 placeholder="请输入密码"
-                :type="isShowCode?'password':'string'"
+                :type="isShowCode?'string':'password'"
                 v-model="code">
       </input>
-      <el-switch class="show-code"
-                    v-model="isShowCode"
-                    active-color="#dcdfe6"
-                    inactive-color="#409EFF">
-      </el-switch>
-      <!--<el-button class="getCode">获取验证码</el-button>-->
+      <div class="show-code" v-model="isShowCode" @click="isShowCode = !isShowCode" :class="{active:isShowCode}">
+        <div class="circle" :class="isShowCode?'active':'origin'">
+
+        </div>
+      </div>
     </div>
     <el-button type="primary"
                :plain="true" class="login-login"
@@ -33,7 +32,7 @@
         name:'',
         code:'',
         message:'',
-        isShowCode:true
+        isShowCode:false
       }
     },
     mounted(){
@@ -77,7 +76,7 @@
         };
         this.$store.dispatch('saveUser',name);//保存用户信息
         this.$router.push('/home')
-      }
+      },
     },
     computed:{
 
@@ -100,6 +99,7 @@
     width: 100%;
   }
   .code{
+    position: relative;
     .codeNum{
       width: 100%;
     }

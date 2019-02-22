@@ -126,15 +126,15 @@
           }
         }
         div{
-          margin-bottom: 10px;
+          margin-bottom: 25px;
           color: #ffe;
-          font-size: 60px;
+          font-size: 80px;
           a{
             color: #ffe;
           }
           &.choose-option{
             .iconfont{
-              font-size: 60px;
+              font-size: 80px;
             }
           }
         }

@@ -1,2 +1,3 @@
 import ajax from './ajax';
-// export const
+const BASE = '/api';
+export const reqUserInfo = () => ajax(BASE+``)
