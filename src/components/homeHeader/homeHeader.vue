@@ -15,6 +15,10 @@
             <i class="iconfont icon-denglu"></i>
             <a>登录</a>
           </div>
+          <!--<div class="login" @click="$router.replace('/home')" v-else>-->
+            <!--<i class="iconfont icon-denglu"></i>-->
+            <!--<a>退出登录</a>-->
+          <!--</div>-->
         </div>
         <div class="header-right-two" v-else :class="{active:nowWidth<=1069}">
           <div class="choose" @click="isShow = !isShow" v-if="!isShow">
@@ -33,6 +37,10 @@
               <i class="iconfont icon-denglu"></i>
               <a>登录</a>
             </div>
+            <!--<div class="login" @click="$router.replace('/home')" v-else>-->
+              <!--<i class="iconfont icon-denglu"></i>-->
+              <!--<a>退出登录</a>-->
+            <!--</div>-->
           </div>
         </div>
       </el-card>

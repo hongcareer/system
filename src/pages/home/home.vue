@@ -168,9 +168,9 @@
       data(){
         return {
           nowWidth:document.body.clientWidth,//屏宽
-          nowHeight:document.body.clientHeight,
+          nowHeight:document.body.clientHeight,//屏幕高度
           nowTime:'',//时间格式
-          nowYear:''
+          nowYear:'',//年格式
         }
       },
       components:{
@@ -249,7 +249,7 @@
         color: #333;
         text-align: center;
         height: 80%;
-        padding: 144px;
+        padding: 126px;
         padding-top: 15px;
         overflow-x: hidden;
         &.active{
@@ -265,9 +265,9 @@
             margin-bottom: 0px;
           }
           .el-row{
-            margin-top: 15px;
+            margin: 15px 10px 0 !important;
             &.active{
-              margin-top: 0px;
+              margin: 0px;
             }
             .el-col{
               &:nth-child(1){
@@ -284,8 +284,8 @@
             font-weight: 100;
             &:hover{
               box-shadow: 0px 0px 36px 3px blue;
-              transform: scale(1.01);
-              transition: all 1s;
+              transform: scale(1.02);
+              transition: all 0.5s;
             }
             &.active{
               height: 900px;
@@ -600,9 +600,9 @@
           border: none;
           height: 320px;
           .el-row{
-            margin-top: 20px;
+            margin: 20px 10px 0 !important;
             &.active{
-              margin-top: 0px;
+              margin: 0px;
             }
           }
           .all{
@@ -611,8 +611,8 @@
             color: #ffe;
             &:hover{
               box-shadow:  0px 0px 36px 3px blue;
-              transform: scale(1.01);
-              transition: all 1s;
+              transform: scale(1.02);
+              transition: all 0.5s;
             }
             &.active{
               height: 150px;

@@ -1,5 +1,5 @@
 <template>
-    <h2>test pages</h2>
+
 </template>
 
 <script>

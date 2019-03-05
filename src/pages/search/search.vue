@@ -1,10 +1,9 @@
-<template>
-    <div>
-      <h2>this is search page</h2>
-    </div>
-</template>
+<templste>
+
+</templste>
 
 <script>
+
     export default {
         name: "search"
     }
